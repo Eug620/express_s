@@ -1,10 +1,11 @@
 /*
- * @Author: yeyuhang
- * @Date: 2020-11-20 10:54:21
- * @LastEditTime: 2020-12-03 11:20:20
- * @LastEditors: yeyuhang
- * @Descripttion: 头部注释
+ * @Author        : yeyuhang
+ * @Date          : Do not edit
+ * @LastEditTime  : Do not Edit
+ * @LastEditors   : yeyuhang
+ * @Descripttion  : Descripttion
  */
+
 var db = require('../db')
 
 module.exports = {

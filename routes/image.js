@@ -1,10 +1,11 @@
 /*
- * @Author: yeyuhang
- * @Date: 2020-12-29 10:59:27
- * @LastEditTime: 2020-12-29 11:23:13
- * @LastEditors: yeyuhang
- * @Descripttion: 头部注释
+ * @Author        : yeyuhang
+ * @Date          : Do not edit
+ * @LastEditTime  : Do not Edit
+ * @LastEditors   : yeyuhang
+ * @Descripttion  : Descripttion
  */
+
 var express = require('express')
 var router = express.Router()
 var SQL_TABLE_NAME = require('./db.tableName')

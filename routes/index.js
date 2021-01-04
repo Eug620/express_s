@@ -1,10 +1,11 @@
 /*
- * @Author: yeyuhang
- * @Date: 2020-11-19 10:45:35
- * @LastEditTime: 2020-12-29 11:00:11
- * @LastEditors: yeyuhang
- * @Descripttion: 头部注释
+ * @Author        : yeyuhang
+ * @Date          : Do not edit
+ * @LastEditTime  : Do not Edit
+ * @LastEditors   : yeyuhang
+ * @Descripttion  : Descripttion
  */
+
 var userRouter = require('./user');
 var defaultRouter = require('./default');
 var imageRouter = require('./image');
