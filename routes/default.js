@@ -1,8 +1,8 @@
 /*
  * @Author        : yeyuhang
  * @Date          : Do not edit
- * @LastEditTime  : Do not Edit
- * @LastEditors   : yeyuhang
+ * @LastEditTime: 2021-01-07 14:11:51
+ * @LastEditors: Please set LastEditors
  * @Descripttion  : Descripttion
  */
 
@@ -11,13 +11,15 @@ var router = express.Router()
 var SQL_TABLE_NAME = require('./db.tableName')
 var db = require('../db')
 const { PARSER, UPDATE, SEARCH, SEARCHALL, ADD, DELETE } = require('../utils')
-
+const { PARSE_INTERFACE_LOG, TableInterfaceField } = require('../utils/interface.log')
 // 各接口调用信息
 router.get('/getInterfaceDetail', function (req, res, next) {
     SEARCH(SQL_TABLE_NAME.interface, "name = 'getInterfaceDetail'",(detail) => {
         UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'getInterfaceDetail'")
-       })
-    SEARCHALL(SQL_TABLE_NAME.interface, res)
+    })
+    SEARCHALL(SQL_TABLE_NAME.interface, (results) => {
+        res.json({ code: 200, result: results })
+    })
 })
 // 新增接口调用信息
 router.post('/addInterfaceDetail', function (req, res, next) {
@@ -60,6 +62,16 @@ router.post('/deleteInterfaceDetail', function (req, res, next) {
     } else {
         res.json({ code: 403, result: { msg: '参数缺失' } })
     }
+})
+// 接口日志信息列表
+router.get('/getInterfaceLog', function (req, res, next) {
+    SEARCH(SQL_TABLE_NAME.interface, "name = 'getInterfaceLog'",(detail) => {
+        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'getInterfaceLog'")
+    })
+    SEARCHALL(SQL_TABLE_NAME.interface_log, (results) => {
+        const DATA = PARSE_INTERFACE_LOG(results, TableInterfaceField)
+        res.json({ code: 200, result: DATA })
+    })
 })
 
 module.exports = router

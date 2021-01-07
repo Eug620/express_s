@@ -1,8 +1,8 @@
 /*
  * @Author        : yeyuhang
  * @Date          : Do not edit
- * @LastEditTime  : Do not Edit
- * @LastEditors   : yeyuhang
+ * @LastEditTime: 2021-01-04 18:48:36
+ * @LastEditors: Please set LastEditors
  * @Descripttion  : Descripttion
  */
 
@@ -17,7 +17,9 @@ router.get('/getImageList', function (req, res, next) {
     SEARCH(SQL_TABLE_NAME.interface, "name = 'getImageList'",(detail) => {
         UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'getImageList'")
     })
-    SEARCHALL(SQL_TABLE_NAME.image, res)
+    SEARCHALL(SQL_TABLE_NAME.image, (results) => {
+        res.json({ code: 200, result: results })
+    })
 })
 // 新增图片
 router.post('/addImage', function (req, res, next) {

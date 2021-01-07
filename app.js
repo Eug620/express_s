@@ -1,3 +1,10 @@
+/*
+ * @Author        : yeyuhang
+ * @Date          : Do not edit
+ * @LastEditTime  : Do not Edit
+ * @LastEditors   : yeyuhang
+ * @Descripttion  : Descripttion
+ */
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,6 +13,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var bodyParser = require('body-parser');
+var Event = require('./event')
 var app = express();
 
 // view engine setup
@@ -24,6 +32,7 @@ app.use(bodyParser.urlencoded({            //此项必须在 bodyParser.json 下
 }));
 // 抽取路由
 indexRouter(app)
+Event(app)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

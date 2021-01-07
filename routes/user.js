@@ -1,8 +1,8 @@
 /*
  * @Author        : yeyuhang
  * @Date          : Do not edit
- * @LastEditTime  : Do not Edit
- * @LastEditors   : yeyuhang
+ * @LastEditTime: 2021-01-04 18:48:43
+ * @LastEditors: Please set LastEditors
  * @Descripttion  : Descripttion
  */
 var express = require('express')
@@ -15,7 +15,9 @@ router.get('/getUserList', function (req, res, next) {
     SEARCH(SQL_TABLE_NAME.interface, "name = 'getUserList'",(detail) => {
         UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'getUserList'")
     })
-    SEARCHALL(SQL_TABLE_NAME.user, res)
+    SEARCHALL(SQL_TABLE_NAME.user, (results) => {
+        res.json({ code: 200, result: results })
+    })
 })
 // 新增用户
 router.post('/createUser', function (req, res, next) {

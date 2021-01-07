@@ -1,8 +1,8 @@
 /*
  * @Author        : yeyuhang
  * @Date          : Do not edit
- * @LastEditTime  : Do not Edit
- * @LastEditors   : yeyuhang
+ * @LastEditTime: 2021-01-07 13:33:08
+ * @LastEditors: Please set LastEditors
  * @Descripttion  : Descripttion
  */
 
@@ -29,10 +29,10 @@ module.exports = {
             return results
         })
     },
-    SEARCHALL: (tableName, res) => {
-        if (res) {
+    SEARCHALL: (tableName, cb) => {
+        if (cb) {
             db.query(`select * from ${tableName}`, [], function (results, fields) {
-                res.json({ code: 200, result: results })
+                cb(results)
             })
         } else {
             return db.query(`select * from ${tableName}`, [], function (results, fields) {
@@ -50,6 +50,11 @@ module.exports = {
     },
     ADD: (tableName, fields, values, cb) => {
         return db.query(`INSERT INTO ${tableName}(${fields}) VALUES (${values});`, [], function (results, fields) {
+            cb(results, fields)
+        })
+    },
+    REFRESH: (tableName, fields, values, cb) => {
+        return db.query(`update ${tableName} set ${fields} = ${values};`, [], function (results, fields) {
             cb(results, fields)
         })
     }
