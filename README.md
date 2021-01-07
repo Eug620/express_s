@@ -44,6 +44,12 @@ http://XX.XX.XXX.XXX
 /deleteInterfaceDetail
 ```
 
+```js
+// 获取接口日志详情列表
+// methods: GET
+/getInterfaceLog
+```
+
 `/user`
 
 ```js
