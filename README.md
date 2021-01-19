@@ -147,15 +147,6 @@ http://XX.XX.XXX.XXX
 ```
 
 ```js
-// 乡级（乡镇、街道）列表
-// methods: get
-// query provinceCode - String - require
-// query cityCode - String - require
-// query areaCode - String - require
-/streets
-```
-
-```js
 // 村级（村委会、居委会）列表 (TODO)
 // methods: get
 // query provinceCode - String - require
