@@ -39,7 +39,7 @@ router.get('/areas', function (req, res, next) {
         UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'areas'")
     })
     const { provinceCode, cityCode } = req.query
-    if (!provinceCode) {
+    if (!provinceCode || !cityCode) {
         res.json({ code: 403, result: { msg: '参数缺失!' } })
     } else {
         SEARCH(SQL_TABLE_NAME.city_areas, `provinceCode = ${provinceCode} and cityCode = ${cityCode}`,(detail) => {
@@ -53,7 +53,7 @@ router.get('/streets', function (req, res, next) {
         UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'streets'")
     })
     const { provinceCode, cityCode, areaCode } = req.query
-    if (!provinceCode) {
+    if (!provinceCode || !cityCode || !areaCode) {
         res.json({ code: 403, result: { msg: '参数缺失!' } })
     } else {
         SEARCH(SQL_TABLE_NAME.city_streets, `provinceCode = ${provinceCode} and cityCode = ${cityCode} and areaCode = ${areaCode}`,(detail) => {
@@ -67,7 +67,7 @@ router.get('/streets', function (req, res, next) {
         UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'villages'")
     })
     const { provinceCode, cityCode, areaCode, streetCode } = req.query
-    if (!provinceCode) {
+    if (!provinceCode || !cityCode || !areaCode || !streetCode) {
         res.json({ code: 403, result: { msg: '参数缺失!' } })
     } else {
         SEARCH(SQL_TABLE_NAME.city_villages, `provinceCode = ${provinceCode} and cityCode = ${cityCode} and areaCode = ${areaCode} and streetCode = ${streetCode}`,(detail) => {
