@@ -1,9 +1,10 @@
-/*
- * @Author        : yeyuhang
- * @Date          : Do not edit
- * @LastEditTime: 2021-01-07 13:33:08
- * @LastEditors: Please set LastEditors
- * @Descripttion  : Descripttion
+/* 
+ * @Author       : Eug
+ * @Date         : 2021-01-04 18:44:46
+ * @LastEditTime : 2021-01-28 15:14:50
+ * @LastEditors  : Eug
+ * @Descripttion : Descripttion
+ * @FilePath     : /express_s/utils/index.js
  */
 
 var db = require('../db')

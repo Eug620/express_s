@@ -1,6 +1,13 @@
+/* 
+ * @Author       : Eug
+ * @Date         : 2020-11-19 10:45:35
+ * @LastEditTime : 2021-01-28 15:14:05
+ * @LastEditors  : Eug
+ * @Descripttion : Descripttion
+ * @FilePath     : /express_s/db.js
+ */
 var mysql = require('mysql');
 var dbConfig = require('./db.config');
-
 
 module.exports = {
     query: function (sql, params, callback) {

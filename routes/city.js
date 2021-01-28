@@ -1,10 +1,12 @@
-/*
- * @Author        : yeyuhang
- * @Date          : Do not edit
- * @LastEditTime: 2021-01-19 15:49:57
- * @LastEditors: Please set LastEditors
- * @Descripttion  : Descripttion
+/* 
+ * @Author       : Eug
+ * @Date         : 2021-01-28 15:04:34
+ * @LastEditTime : 2021-01-28 15:16:00
+ * @LastEditors  : Eug
+ * @Descripttion : Descripttion
+ * @FilePath     : /express_s/routes/city.js
  */
+
 var express = require('express')
 var router = express.Router()
 var SQL_TABLE_NAME = require('./db.tableName')

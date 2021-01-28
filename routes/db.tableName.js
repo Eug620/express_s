@@ -1,9 +1,10 @@
-/*
- * @Author        : yeyuhang
- * @Date          : Do not edit
- * @LastEditTime: 2021-01-19 15:48:48
- * @LastEditors: Please set LastEditors
- * @Descripttion  : Descripttion
+/* 
+ * @Author       : Eug
+ * @Date         : 2021-01-28 14:48:32
+ * @LastEditTime : 2021-01-28 15:13:49
+ * @LastEditors  : Eug
+ * @Descripttion : Descripttion
+ * @FilePath     : /express_s/routes/db.tableName.js
  */
 
 var SQL_TABLE_NAME = {

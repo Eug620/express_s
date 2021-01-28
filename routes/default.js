@@ -1,9 +1,10 @@
-/*
- * @Author        : yeyuhang
- * @Date          : Do not edit
- * @LastEditTime: 2021-01-07 14:11:51
- * @LastEditors: Please set LastEditors
- * @Descripttion  : Descripttion
+/* 
+ * @Author       : Eug
+ * @Date         : 2021-01-19 11:32:06
+ * @LastEditTime : 2021-01-28 15:15:47
+ * @LastEditors  : Eug
+ * @Descripttion : Descripttion
+ * @FilePath     : /express_s/routes/default.js
  */
 
 var express = require('express')

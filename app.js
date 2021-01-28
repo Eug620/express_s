@@ -1,10 +1,12 @@
-/*
- * @Author        : yeyuhang
- * @Date          : Do not edit
- * @LastEditTime  : Do not Edit
- * @LastEditors   : yeyuhang
- * @Descripttion  : Descripttion
+/* 
+ * @Author       : Eug
+ * @Date         : 2020-11-23 15:37:56
+ * @LastEditTime : 2021-01-28 15:14:32
+ * @LastEditors  : Eug
+ * @Descripttion : Descripttion
+ * @FilePath     : /express_s/app.js
  */
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');

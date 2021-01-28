@@ -1,9 +1,10 @@
-/*
- * @Author        : yeyuhang
- * @Date          : Do not edit
- * @LastEditTime: 2021-01-19 15:01:36
- * @LastEditors: Please set LastEditors
- * @Descripttion  : Descripttion
+/* 
+ * @Author       : Eug
+ * @Date         : 2020-11-19 10:45:35
+ * @LastEditTime : 2021-01-28 15:15:21
+ * @LastEditors  : Eug
+ * @Descripttion : Descripttion
+ * @FilePath     : /express_s/routes/index.js
  */
 
 var userRouter = require('./user');

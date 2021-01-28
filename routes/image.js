@@ -1,9 +1,10 @@
-/*
- * @Author        : yeyuhang
- * @Date          : Do not edit
- * @LastEditTime: 2021-01-04 18:48:36
- * @LastEditors: Please set LastEditors
- * @Descripttion  : Descripttion
+/* 
+ * @Author       : Eug
+ * @Date         : 2020-12-29 10:59:27
+ * @LastEditTime : 2021-01-28 15:15:36
+ * @LastEditors  : Eug
+ * @Descripttion : Descripttion
+ * @FilePath     : /express_s/routes/image.js
  */
 
 var express = require('express')

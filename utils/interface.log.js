@@ -1,10 +1,12 @@
-/*
- * @Author        : yeyuhang
- * @Date          : Do not edit
- * @LastEditTime: 2021-01-07 14:18:30
- * @LastEditors: Please set LastEditors
- * @Descripttion  : Descripttion
+/* 
+ * @Author       : Eug
+ * @Date         : 2021-01-07 13:59:16
+ * @LastEditTime : 2021-01-28 15:14:57
+ * @LastEditors  : Eug
+ * @Descripttion : Descripttion
+ * @FilePath     : /express_s/utils/interface.log.js
  */
+
 module.exports = {
     // interface使用字段
     TableInterfaceField: ['id', 'belong', 'name', 'request'],
