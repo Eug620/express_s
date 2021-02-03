@@ -1,13 +1,14 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-12-29 10:59:27
- * @LastEditTime : 2021-01-28 15:15:36
+ * @LastEditTime : 2021-02-03 19:38:04
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/image.js
  */
 
 var express = require('express')
+var _ = require('lodash')
 var router = express.Router()
 var SQL_TABLE_NAME = require('./db.tableName')
 var db = require('../db')
@@ -65,6 +66,16 @@ router.post('/deleteImage', function (req, res, next) {
     } else {
         res.json({ code: 403, result: { msg: '参数缺失' } })
     }
+})
+// 获取随机图片
+router.get('/background', function (req, res, next) {
+    SEARCH(SQL_TABLE_NAME.interface, "name = 'background'",(detail) => {
+        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'background'")
+    })
+    SEARCHALL(SQL_TABLE_NAME.image, (results) => {
+        const idx = _.random(0, results.length)
+        res.json({ code: 200, result: results[idx] })
+    })
 })
 
 module.exports = router
