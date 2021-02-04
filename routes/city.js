@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-28 15:04:34
- * @LastEditTime : 2021-01-28 15:16:00
+ * @LastEditTime : 2021-02-04 11:45:25
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/city.js
@@ -14,18 +14,12 @@ var db = require('../db')
 const { PARSER, UPDATE, SEARCH, SEARCHALL, DELETE, ADD } = require('../utils')
 // 省级（省份、直辖市、自治区）列表
 router.get('/provinces', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'provinces'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'provinces'")
-    })
     SEARCHALL(SQL_TABLE_NAME.city_provinces, (results) => {
         res.json({ code: 200, result: results })
     })
 })
 // 地级（城市）列表
 router.get('/cities', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'cities'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'cities'")
-    })
     const { provinceCode } = req.query
     if (!provinceCode) {
         res.json({ code: 403, result: { msg: '参数缺失!' } })
@@ -37,9 +31,6 @@ router.get('/cities', function (req, res, next) {
 })
 // 县级（区县) 列表
 router.get('/areas', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'areas'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'areas'")
-    })
     const { provinceCode, cityCode } = req.query
     if (!provinceCode || !cityCode) {
         res.json({ code: 403, result: { msg: '参数缺失!' } })
@@ -51,9 +42,6 @@ router.get('/areas', function (req, res, next) {
 })
 // 乡级（乡镇、街道）列表
 router.get('/streets', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'streets'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'streets'")
-    })
     const { provinceCode, cityCode, areaCode } = req.query
     if (!provinceCode || !cityCode || !areaCode) {
         res.json({ code: 403, result: { msg: '参数缺失!' } })
@@ -65,9 +53,6 @@ router.get('/streets', function (req, res, next) {
 })
  // 村级（村委会、居委会）TODO
  router.get('/villages', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'villages'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'villages'")
-    })
     const { provinceCode, cityCode, areaCode, streetCode } = req.query
     if (!provinceCode || !cityCode || !areaCode || !streetCode) {
         res.json({ code: 403, result: { msg: '参数缺失!' } })

@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-19 11:32:06
- * @LastEditTime : 2021-01-28 15:15:47
+ * @LastEditTime : 2021-02-04 11:45:04
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/default.js
@@ -15,18 +15,12 @@ const { PARSER, UPDATE, SEARCH, SEARCHALL, ADD, DELETE } = require('../utils')
 const { PARSE_INTERFACE_LOG, TableInterfaceField } = require('../utils/interface.log')
 // 各接口调用信息
 router.get('/getInterfaceDetail', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'getInterfaceDetail'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'getInterfaceDetail'")
-    })
     SEARCHALL(SQL_TABLE_NAME.interface, (results) => {
         res.json({ code: 200, result: results })
     })
 })
 // 新增接口调用信息
 router.post('/addInterfaceDetail', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'addInterfaceDetail'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'addInterfaceDetail'")
-    })
     const { belong, name } = PARSER(req.body)
     if (belong && name) {
         ADD(SQL_TABLE_NAME.interface, "name, belong, request", `${name}, ${belong}, 0`, (results, fields) => {
@@ -38,9 +32,6 @@ router.post('/addInterfaceDetail', function (req, res, next) {
 })
 // 更新接口调用信息
 router.post('/updateInterfaceDetail', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'updateInterfaceDetail'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'getInterfaceDetail'")
-    })
     const { belong, name, id } = PARSER(req.body)
     if (belong && name && id) {
         UPDATE(SQL_TABLE_NAME.interface, `belong = ${belong}`, "id = " + id)
@@ -52,9 +43,6 @@ router.post('/updateInterfaceDetail', function (req, res, next) {
 })
 // 删除接口调用信息
 router.post('/deleteInterfaceDetail', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'deleteInterfaceDetail'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'getInterfaceDetail'")
-    })
     const { id } = PARSER(req.body)
     if (id) {
         DELETE(SQL_TABLE_NAME.interface, "id = " + id, (results, fields) => {
@@ -66,9 +54,6 @@ router.post('/deleteInterfaceDetail', function (req, res, next) {
 })
 // 接口日志信息列表
 router.get('/getInterfaceLog', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'getInterfaceLog'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'getInterfaceLog'")
-    })
     SEARCHALL(SQL_TABLE_NAME.interface_log, (results) => {
         const DATA = PARSE_INTERFACE_LOG(results, TableInterfaceField)
         res.json({ code: 200, result: DATA })

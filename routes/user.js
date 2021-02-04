@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:38:02
- * @LastEditTime : 2021-01-28 15:15:12
+ * @LastEditTime : 2021-02-04 11:44:13
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/user.js
@@ -14,18 +14,12 @@ var db = require('../db')
 const { PARSER, UPDATE, SEARCH, SEARCHALL, DELETE, ADD } = require('../utils')
 // 用户列表
 router.get('/getUserList', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'getUserList'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'getUserList'")
-    })
     SEARCHALL(SQL_TABLE_NAME.user, (results) => {
         res.json({ code: 200, result: results })
     })
 })
 // 新增用户
 router.post('/createUser', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'createUser'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'createUser'")
-    })
     const { userName, password, email } = PARSER(req.body)
     const timer = Date.parse(new Date())
     // 账号名不可重复
@@ -43,9 +37,6 @@ router.post('/createUser', function (req, res, next) {
 })
 // 更新用户
 router.post('/updateUser', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'updateUser'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'updateUser'")
-    })
     const timer = Date.parse(new Date())
     const { userName, password, email, id } = PARSER(req.body)
     if (userName && password && id) {
@@ -60,9 +51,6 @@ router.post('/updateUser', function (req, res, next) {
 })
 // 删除用户
 router.post('/deleteUser', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'deleteUser'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'deleteUser'")
-    })
     const { id } = PARSER(req.body)
     if (id) {
         DELETE(SQL_TABLE_NAME.user, "id = " + id, (results) => {
@@ -74,9 +62,6 @@ router.post('/deleteUser', function (req, res, next) {
 })
 // 登录
 router.post('/login', function (req, res, next) {
-    SEARCH(SQL_TABLE_NAME.interface, "name = 'login'",(detail) => {
-        UPDATE(SQL_TABLE_NAME.interface, `request = ${detail[0].request + 1}`, "name = 'login'")
-    })
     const { userName, password } = PARSER(req.body)
     SEARCH(SQL_TABLE_NAME.user, `name = '${userName}' and password = '${password}' `, (detail) => {
         if (!detail.length) {

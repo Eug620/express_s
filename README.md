@@ -84,6 +84,14 @@ http://XX.XX.XXX.XXX
 /deleteUser
 ```
 
+```js
+// 登录
+// methods: POST
+// param userName - string - require
+// param password - string - require
+/login
+```
+
 `/image`
 
 ```js
@@ -112,6 +120,12 @@ http://XX.XX.XXX.XXX
 // methods: POST
 // param image_id - Number - require
 /deleteImage
+```
+
+```js
+// 获取随机图片
+// methods: GET
+/background
 ```
 
 `/city`

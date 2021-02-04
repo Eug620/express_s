@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:37:56
- * @LastEditTime : 2021-01-28 15:14:32
+ * @LastEditTime : 2021-02-04 11:24:06
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/app.js
@@ -15,7 +15,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var bodyParser = require('body-parser');
-var Event = require('./event')
+var Event = require('./event');
+var Libs = require('./utils/libs');
 var app = express();
 
 // view engine setup
@@ -23,6 +24,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
+app.use(Libs.UPDATE_INTERFACE);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
