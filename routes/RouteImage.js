@@ -1,18 +1,17 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-12-29 10:59:27
- * @LastEditTime : 2021-02-04 11:44:39
+ * @LastEditTime : 2021-02-19 18:30:10
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /express_s/routes/image.js
+ * @FilePath     : /express_s/routes/RouteImage.js
  */
 
 var express = require('express')
 var _ = require('lodash')
 var router = express.Router()
-var SQL_TABLE_NAME = require('./db.tableName')
-var db = require('../db')
-const { PARSER, UPDATE, SEARCH, SEARCHALL, ADD, DELETE } = require('../utils')
+var { SQL_TABLE_NAME } = require('../lib/const')
+const { PARSER, UPDATE, SEARCHALL, ADD, DELETE } = require('../utils')
 
 // 获取图标列表
 router.get('/getImageList', function (req, res, next) {
@@ -20,6 +19,7 @@ router.get('/getImageList', function (req, res, next) {
         res.json({ code: 200, result: results })
     })
 })
+
 // 新增图片
 router.post('/addImage', function (req, res, next) {
     const { image_url } = PARSER(req.body)
@@ -44,6 +44,7 @@ router.post('/updateImage', function (req, res, next) {
         res.json({ code: 403, result: { msg: '参数缺失' } })
     }
 })
+
 // 删除图片
 router.post('/deleteImage', function (req, res, next) {
     const { image_id } = PARSER(req.body)
@@ -55,6 +56,7 @@ router.post('/deleteImage', function (req, res, next) {
         res.json({ code: 403, result: { msg: '参数缺失' } })
     }
 })
+
 // 获取随机图片
 router.get('/background', function (req, res, next) {
     SEARCHALL(SQL_TABLE_NAME.image, (results) => {

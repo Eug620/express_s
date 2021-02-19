@@ -1,14 +1,14 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-04 18:02:39
- * @LastEditTime : 2021-01-28 15:16:33
+ * @LastEditTime : 2021-02-19 18:24:09
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/event/Interval/index.js
  */
 
 const schedule = require('node-schedule');
-var SQL_TABLE_NAME = require('../../routes/db.tableName.js')
+var { SQL_TABLE_NAME } = require('../../lib/const')
 const { SEARCHALL, ADD, REFRESH } = require('../../utils')
 const { TableInterfaceField } = require('../../utils/interface.log')
 

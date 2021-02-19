@@ -1,13 +1,13 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-02-04 11:20:39
- * @LastEditTime : 2021-02-04 11:42:51
+ * @LastEditTime : 2021-02-19 18:25:11
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/utils/libs.js
  */
 var _ = require('lodash')
-var SQL_TABLE_NAME = require('../routes/db.tableName')
+var { SQL_TABLE_NAME } = require('../lib/const')
 const { UPDATE, SEARCH } = require('../utils')
 
 module.exports = {

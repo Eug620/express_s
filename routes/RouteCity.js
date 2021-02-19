@@ -1,23 +1,24 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-28 15:04:34
- * @LastEditTime : 2021-02-04 11:45:25
+ * @LastEditTime : 2021-02-19 18:29:48
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /express_s/routes/city.js
+ * @FilePath     : /express_s/routes/RouteCity.js
  */
 
 var express = require('express')
 var router = express.Router()
-var SQL_TABLE_NAME = require('./db.tableName')
-var db = require('../db')
-const { PARSER, UPDATE, SEARCH, SEARCHALL, DELETE, ADD } = require('../utils')
+var { SQL_TABLE_NAME } = require('../lib/const')
+const { SEARCH, SEARCHALL } = require('../utils')
+
 // 省级（省份、直辖市、自治区）列表
 router.get('/provinces', function (req, res, next) {
     SEARCHALL(SQL_TABLE_NAME.city_provinces, (results) => {
         res.json({ code: 200, result: results })
     })
 })
+
 // 地级（城市）列表
 router.get('/cities', function (req, res, next) {
     const { provinceCode } = req.query
@@ -29,6 +30,7 @@ router.get('/cities', function (req, res, next) {
         })
     }
 })
+
 // 县级（区县) 列表
 router.get('/areas', function (req, res, next) {
     const { provinceCode, cityCode } = req.query
@@ -40,6 +42,7 @@ router.get('/areas', function (req, res, next) {
         })
     }
 })
+
 // 乡级（乡镇、街道）列表
 router.get('/streets', function (req, res, next) {
     const { provinceCode, cityCode, areaCode } = req.query
@@ -51,6 +54,7 @@ router.get('/streets', function (req, res, next) {
         })
     }
 })
+
  // 村级（村委会、居委会）TODO
  router.get('/villages', function (req, res, next) {
     const { provinceCode, cityCode, areaCode, streetCode } = req.query

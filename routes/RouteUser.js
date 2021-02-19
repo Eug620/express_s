@@ -1,23 +1,24 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:38:02
- * @LastEditTime : 2021-02-04 11:44:13
+ * @LastEditTime : 2021-02-19 18:30:58
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
- * @FilePath     : /express_s/routes/user.js
+ * @FilePath     : /express_s/routes/RouteUser.js
  */
 
 var express = require('express')
 var router = express.Router()
-var SQL_TABLE_NAME = require('./db.tableName')
-var db = require('../db')
+var { SQL_TABLE_NAME } = require('../lib/const')
 const { PARSER, UPDATE, SEARCH, SEARCHALL, DELETE, ADD } = require('../utils')
+
 // 用户列表
 router.get('/getUserList', function (req, res, next) {
     SEARCHALL(SQL_TABLE_NAME.user, (results) => {
         res.json({ code: 200, result: results })
     })
 })
+
 // 新增用户
 router.post('/createUser', function (req, res, next) {
     const { userName, password, email } = PARSER(req.body)
@@ -35,6 +36,7 @@ router.post('/createUser', function (req, res, next) {
         }
     })
 })
+
 // 更新用户
 router.post('/updateUser', function (req, res, next) {
     const timer = Date.parse(new Date())
@@ -49,6 +51,7 @@ router.post('/updateUser', function (req, res, next) {
         res.json({ code: 403, result: { msg: '参数缺失' } })
     }
 })
+
 // 删除用户
 router.post('/deleteUser', function (req, res, next) {
     const { id } = PARSER(req.body)
@@ -60,6 +63,7 @@ router.post('/deleteUser', function (req, res, next) {
         res.json({ code: 403, result: { msg: '参数缺失' } })
     }
 })
+
 // 登录
 router.post('/login', function (req, res, next) {
     const { userName, password } = PARSER(req.body)

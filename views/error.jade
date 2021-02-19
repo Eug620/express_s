@@ -1,6 +1,37 @@
 extends layout
-
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  //- link(rel='stylesheet',type="text/css", href='/stylesheets/time.css')
+  link(rel='stylesheet',type="text/css", href='/stylesheets/notFound.css')
+  //- default
+  //- h1= message
+  //- h2= error.status
+  //- pre #{error.stack}
+
+  //- NotFound
+  div.g-container
+    -for(var i=0; i<11; i++)
+        .g-view 
+            .g-text Not Found 
+
+  //- 3D时钟
+  //- div.g-number-container.vision.preserve
+  //-   div.g-number-rotate.preserve
+  //-       div.g-number.preserve(data-digit=1)
+  //-           - for(var i=0; i<7; i++)  
+  //-               div.g-line.preserve.translate
+  //-       div.g-number.preserve(data-digit=2)
+  //-           - for(var i=0; i<7; i++)  
+  //-               div.g-line.preserve.translate
+  //-       div.g-number.preserve(data-digit=3)
+  //-           - for(var i=0; i<7; i++)  
+  //-               div.g-line.preserve.translate
+  //-       div.g-comma.preserve
+  //-       div.g-number.preserve(data-digit=4)
+  //-           - for(var i=0; i<7; i++)  
+  //-               div.g-line.preserve.translate
+  //-       div.g-number.preserve(data-digit=5)
+  //-           - for(var i=0; i<7; i++)  
+  //-               div.g-line.preserve.translate
+  //-       div.g-number.preserve(data-digit=6)
+  //-           - for(var i=0; i<7; i++)  
+  //-               div.g-line.preserve.translate
