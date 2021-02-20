@@ -6,3 +6,254 @@ body {
 a {
   color: #00B7FF;
 }
+
+/* 404 */
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.g-container {
+  position: relative;
+  margin: 20vh auto;
+  width: 33vw;
+  height: 10vw;
+  filter: blur(0.2vw) contrast(8);
+}
+
+.g-view {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  position: absolute;
+  overflow: hidden;
+  font-size: 6vw;
+  height: 10vw;
+}
+
+.g-text {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 33vw;
+  text-align: center;
+}
+
+.g-view:nth-child(0) {
+  width: 0vw;
+  animation: rotate 1.5s ease-in 0ms;
+  z-index: 10;
+}
+.g-view:nth-child(0)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: -3vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(1) {
+  width: 3vw;
+  animation: rotate 1.5s ease-in 140ms;
+  z-index: 9;
+}
+.g-view:nth-child(1)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(2) {
+  width: 6vw;
+  animation: rotate 1.5s ease-in 280ms;
+  z-index: 8;
+}
+.g-view:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(3) {
+  width: 9vw;
+  animation: rotate 1.5s ease-in 420ms;
+  z-index: 7;
+}
+.g-view:nth-child(3)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(4) {
+  width: 12vw;
+  animation: rotate 1.5s ease-in 560ms;
+  z-index: 6;
+}
+.g-view:nth-child(4)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 9vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(5) {
+  width: 15vw;
+  animation: rotate 1.5s ease-in 700ms;
+  z-index: 5;
+}
+.g-view:nth-child(5)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(6) {
+  width: 18vw;
+  animation: rotate 1.5s ease-in 840ms;
+  z-index: 4;
+}
+.g-view:nth-child(6)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(7) {
+  width: 21vw;
+  animation: rotate 1.5s ease-in 980ms;
+  z-index: 3;
+}
+.g-view:nth-child(7)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(8) {
+  width: 24vw;
+  animation: rotate 1.5s ease-in 1120ms;
+  z-index: 2;
+}
+.g-view:nth-child(8)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 21vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(9) {
+  width: 27vw;
+  animation: rotate 1.5s ease-in 1260ms;
+  z-index: 1;
+}
+.g-view:nth-child(9)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(10) {
+  width: 30vw;
+  animation: rotate 1.5s ease-in 1400ms;
+  z-index: 0;
+}
+.g-view:nth-child(10)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 27vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+.g-view:nth-child(11) {
+  width: 33vw;
+  animation: rotate 1.5s ease-in 1540ms;
+  z-index: -1;
+}
+.g-view:nth-child(11)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30vw;
+  height: 10vw;
+  background: #fff;
+  z-index: 1;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scaleX(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scaleX(0.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) scaleX(1);
+  }
+}
