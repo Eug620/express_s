@@ -61,18 +61,18 @@ http://XX.XX.XXX.XXX
 ```js
 // 新增用户
 // methods: POST
-// param userName - string - require
-// param password - string - require
-// param email - string
+// param user_name - string - require
+// param user_user_password - string - require
+// param user_email - string
 /createUser
 ```
 
 ```js
 // 更新用户
 // methods: POST
-// param userName - string - require
-// param password - string - require
-// param id - Number - require
+// param user_name - string - require
+// param user_password - string - require
+// param user_id - Number - require
 // param email - string
 /updateUser
 ```
@@ -80,15 +80,15 @@ http://XX.XX.XXX.XXX
 ```js
 // 删除用户
 // methods: POST
-// param id - Number - require
+// param user_id - Number - require
 /deleteUser
 ```
 
 ```js
 // 登录
 // methods: POST
-// param userName - string - require
-// param password - string - require
+// param user_name - string - require
+// param user_password - string - require
 /login
 ```
 

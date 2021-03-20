@@ -23,21 +23,24 @@ router.get('/getImageList', function (req, res, next) {
 
 // 新增图片
 router.post('/addImage', function (req, res, next) {
-    const { url } = PARSER(req.body)
-    if (url) {
-        ADD(SQL_TABLE_NAME.image, "id, url", `"${UUID.v4()}", ${url}`, (results, fields) => {
+    const { image_url } = PARSER(req.body)
+    const timer = Date.parse(new Date())
+    if (image_url) {
+        ADD(SQL_TABLE_NAME.image, "image_id, image_url, create_time, update_time", `'${UUID.v4()}', ${image_url}, ${timer}, ${timer}`, (results, fields) => {
             res.json({ code: 200, result: { msg: 'success' } })
         })
     } else {
-        res.json({ code: 403, result: { msg: 'url is require!' } })
+        res.json({ code: 403, result: { msg: 'image_url is require!' } })
     }
 })
 
 // 更新图片
 router.post('/updateImage', function (req, res, next) {
-    const { url, id } = PARSER(req.body)
-    if (url && id) {
-        UPDATE(SQL_TABLE_NAME.image, `url = ${url}`, `id = "${id}"`)
+    const { image_url, image_id } = PARSER(req.body)
+    const timer = Date.parse(new Date())
+    if (image_url && image_id) {
+        UPDATE(SQL_TABLE_NAME.image, `image_url = ${image_url}`, "image_id = " + image_id)
+        UPDATE(SQL_TABLE_NAME.image, `update_time = ${timer}`, "image_id = " + image_id)
         res.json({ code: 200, result: { msg: 'update image success' } })
     } else {
         res.json({ code: 403, result: { msg: '参数缺失' } })
@@ -46,9 +49,9 @@ router.post('/updateImage', function (req, res, next) {
 
 // 删除图片
 router.post('/deleteImage', function (req, res, next) {
-    const { id } = PARSER(req.body)
-    if (id) {
-        DELETE(SQL_TABLE_NAME.image, `id = "${id}"`, (results, fields) => {
+    const { image_id } = PARSER(req.body)
+    if (image_id) {
+        DELETE(SQL_TABLE_NAME.image, "image_id = " + image_id, (results, fields) => {
             res.json({ code: 200, result: { msg: 'delete image success' } })
         })
     } else {
