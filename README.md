@@ -62,7 +62,7 @@ http://XX.XX.XXX.XXX
 // 新增用户
 // methods: POST
 // param user_name - string - require
-// param user_user_password - string - require
+// param user_password - string - require
 // param user_email - string
 /createUser
 ```
