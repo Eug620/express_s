@@ -13,7 +13,6 @@ var router = express.Router()
 var { SQL_TABLE_NAME } = require('../lib/const')
 const UUID = require('uuid');
 const { PARSER, UPDATE, SEARCHALL, ADD, DELETE } = require('../utils')
-// `id = "${ UUID.v4()}"`, "image_id = " + image_id
 // 获取图标列表
 router.get('/getImageList', function (req, res, next) {
     SEARCHALL(SQL_TABLE_NAME.image, (results) => {
