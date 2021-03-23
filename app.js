@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:37:56
- * @LastEditTime : 2021-03-23 19:37:28
+ * @LastEditTime : 2021-03-23 19:44:19
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/app.js
@@ -33,7 +33,7 @@ var app = express();
 app.all('*', function(req, res, next) {
   console.log(`${Date.now()}:来自${req.connection.remoteAddress} 访问了 ${req.method}-${req.url}。参数是：${req.query},携带cookie:${req.headers.cookie}`);
   res.header('Access-Control-Allow-Origin', req.headers.origin); //需要显示设置来源
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, test');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, test, x-token');
   res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Credentials', true); //带cookies
   next();
