@@ -26,7 +26,7 @@ router.post('/createArticle', function (req, res, next) {
   if ( !article_title || !article_describe || !article_content || !author) {
     res.json({ code: 403, result: { msg: '参数缺失!' } })
   } else {
-    ADD(SQL_TABLE_NAME.article, "article_id, article_title, article_describe, article_content, author, page_views, create_time", `'${UUID.v4()}', ${article_title}, ${article_describe}, ${article_content}, ${author}, ${0}, ${timer}`, (results, fields) => {
+    ADD(SQL_TABLE_NAME.article, "article_id, article_title, article_describe, article_content, author, page_views, create_time", `'${UUID.v4()}', '${article_title}', '${article_describe}', '${article_content}', '${author}', ${0}, ${timer}`, (results, fields) => {
       res.json({ code: 200, result: { msg: 'create article success' } })
     })
   }
