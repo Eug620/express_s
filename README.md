@@ -169,3 +169,28 @@ http://XX.XX.XXX.XXX
 // query streetCode - String - require
 /villages
 ```
+
+`/article`
+
+```js
+// 获取文章列表
+// methods: GET
+/getArticleList
+```
+
+```js
+// 新增文章
+// methods: POST
+// param article_title - string - require
+// param article_describe - string - require
+// param article_content - string - require
+// param author - string - require
+/createArticle
+```
+
+```js
+// 删除文章
+// methods: POST
+// param article_id - Number - require
+/deleteArticle
+```
