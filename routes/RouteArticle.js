@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-25 10:41:07
- * @LastEditTime : 2021-03-25 14:21:44
+ * @LastEditTime : 2021-03-26 13:34:25
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteArticle.js
@@ -10,11 +10,11 @@ var express = require('express')
 var router = express.Router()
 var { SQL_TABLE_NAME } = require('../lib/const')
 const UUID = require('uuid')
-const { SEARCHALL, PARSER, ADD, DELETE } = require('../utils')
+const { SEARCHCOLUMNS, PARSER, ADD, DELETE } = require('../utils')
 
 // 文章列表
 router.get('/getArticleList', function (req, res, next) {
-  SEARCHALL(SQL_TABLE_NAME.article, (results) => {
+  SEARCHCOLUMNS(SQL_TABLE_NAME.article, 'article_id, article_title, article_describe, author, page_views, create_time', (results) => {
     res.json({ code: 200, result: results })
   })
 })

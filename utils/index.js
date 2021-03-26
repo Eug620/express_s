@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-04 18:44:46
- * @LastEditTime : 2021-01-28 15:14:50
+ * @LastEditTime : 2021-03-26 13:32:50
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/utils/index.js
@@ -24,6 +24,14 @@ module.exports = {
     },
     SEARCH: (tableName, where, cb) => {
         return db.query(`select * from ${tableName} where ${where}`, [], function (results, fields) {
+            if (cb) {
+                cb(results)
+            }
+            return results
+        })
+    },
+    SEARCHCOLUMNS: (tableName, where, cb) => {
+        return db.query(`select ${where} from ${tableName}`, [], function (results, fields) {
             if (cb) {
                 cb(results)
             }
