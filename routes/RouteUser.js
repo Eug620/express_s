@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:38:02
- * @LastEditTime : 2021-03-26 17:26:21
+ * @LastEditTime : 2021-03-26 17:43:05
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteUser.js
@@ -28,11 +28,11 @@ router.post('/createUser', function (req, res, next) {
         res.json({ code: 403, result: { msg: '账号密码为必填项!' } })
     } else {
         // 账号名不可重复
-        SEARCH(SQL_TABLE_NAME.user, `user_name = ${user_name}`,(detail) => {
+        SEARCH(SQL_TABLE_NAME.user, `user_name = '${user_name}'`,(detail) => {
             if (detail.length) {
                 res.json({ code: 403, result: { msg: '该用户名已被使用!' } })
             } else {
-                ADD(SQL_TABLE_NAME.user, "user_id, user_name, user_password, user_email, create_time, update_time", `'${UUID.v4()}', '${user_name}', '${user_password}', '${user_email || ""}', ${timer}, ${timer}`, (results, fields) => {
+                ADD(SQL_TABLE_NAME.user, "user_id, user_name, user_password, user_email, create_time, update_time", `'${UUID.v4()}', '${user_name}', '${user_password}', '${user_email}', ${timer}, ${timer}`, (results, fields) => {
                     res.json({ code: 200, result: { msg: 'create user success' } })
                 })
             }
