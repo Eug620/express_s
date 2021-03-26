@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:38:02
- * @LastEditTime : 2021-02-19 18:30:58
+ * @LastEditTime : 2021-03-26 17:20:46
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteUser.js
@@ -70,10 +70,11 @@ router.post('/deleteUser', function (req, res, next) {
 // 登录
 router.post('/login', function (req, res, next) {
     const { user_name, user_password } = PARSER(req.body)
-    SEARCH(SQL_TABLE_NAME.user, `user_name = ${user_name} and user_password = ${user_password} `, (detail) => {
+    SEARCH(SQL_TABLE_NAME.user, `user_name = '${user_name}' and user_password = '${user_password}'`, (detail) => {
         if (!detail.length) {
             res.json({ code: 403, result: { msg: '该用户不存在!' } })
         } else {
+            detail.forEach(item => Reflect.deleteProperty(item, 'user_password'))
             res.json({ code: 200, result: { msg: '欢迎登录', data: detail[0] } })
         }
     })
