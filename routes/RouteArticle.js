@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-25 10:41:07
- * @LastEditTime : 2021-04-02 11:08:08
+ * @LastEditTime : 2021-04-02 11:48:34
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteArticle.js
@@ -44,6 +44,22 @@ router.post('/deleteArticle', function (req, res, next) {
   if (article_id) {
     DELETE(SQL_TABLE_NAME.article, "article_id = " + article_id, (results) => {
       res.json({ code: 200, result: { msg: 'delete article success' } })
+    })
+  } else {
+    res.json({ code: 403, result: { msg: '参数缺失' } })
+  }
+})
+
+// 文章详情
+router.post('/detailArticle', function (req, res, next) {
+  const { article_id } = PARSER(req.body)
+  if (article_id) {
+    SEARCH(SQL_TABLE_NAME.article, `article_id = '${article_id}'`, (detail) => {
+      if (!detail.length) {
+        res.json({ code: 403, result: { msg: '该文章不存在!' } })
+      } else {
+        res.json({ code: 200, result: detail[0]})
+      }
     })
   } else {
     res.json({ code: 403, result: { msg: '参数缺失' } })
