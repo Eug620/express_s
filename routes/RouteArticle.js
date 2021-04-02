@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-25 10:41:07
- * @LastEditTime : 2021-04-02 11:48:34
+ * @LastEditTime : 2021-04-02 15:01:30
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteArticle.js
@@ -10,7 +10,7 @@ var express = require('express')
 var router = express.Router()
 var { SQL_TABLE_NAME } = require('../lib/const')
 const UUID = require('uuid')
-const { SEARCHCOLUMNS, PARSER, ADD, DELETE, SEARCH } = require('../utils')
+const { SEARCHCOLUMNS, PARSER, ADD, DELETE, SEARCH, UPDATE } = require('../utils')
 
 // 文章列表
 router.get('/getArticleList', function (req, res, next) {
@@ -58,7 +58,9 @@ router.post('/detailArticle', function (req, res, next) {
       if (!detail.length) {
         res.json({ code: 403, result: { msg: '该文章不存在!' } })
       } else {
-        res.json({ code: 200, result: detail[0]})
+        UPDATE(SQL_TABLE_NAME.article, `page_views = ${detail[0].page_views + 1}`, `article_id = '${article_id}'`, (dtl) => {
+          res.json({ code: 200, result: detail[0]})
+        })
       }
     })
   } else {
