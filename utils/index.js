@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-04 18:44:46
- * @LastEditTime : 2021-03-26 13:32:50
+ * @LastEditTime : 2021-04-06 17:12:39
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/utils/index.js
@@ -66,5 +66,19 @@ module.exports = {
         return db.query(`update ${tableName} set ${fields} = ${values};`, [], function (results, fields) {
             cb(results, fields)
         })
+    },
+    BUFFER_BASE64: (string) => {
+        // create a buffer
+        const buff = Buffer.from(string, 'utf-8')
+        // encode buffer as Base64
+        const base64 = buff.toString('base64')
+        return base64
+    },
+    BUFFER_UTF8: (string) => {
+        // create a buffer
+        const buff = Buffer.from(string, 'base64')
+        // decode buffer as UTF-8
+        const str = buff.toString('utf-8')
+        return str
     }
 }
