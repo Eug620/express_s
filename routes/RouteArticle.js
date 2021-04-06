@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-25 10:41:07
- * @LastEditTime : 2021-04-06 17:17:12
+ * @LastEditTime : 2021-04-06 17:27:41
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteArticle.js
@@ -64,7 +64,7 @@ router.post('/detailArticle', function (req, res, next) {
             item.article_content = BUFFER_UTF8(item.article_content)
             return item
           })
-          res.json({ code: 200, result: data})
+          res.json({ code: 200, result: data[0]})
         })
       }
     })
