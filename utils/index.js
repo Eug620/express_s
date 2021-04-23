@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-04 18:44:46
- * @LastEditTime : 2021-04-06 17:12:39
+ * @LastEditTime : 2021-04-23 14:26:57
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/utils/index.js
@@ -24,6 +24,14 @@ module.exports = {
     },
     SEARCH: (tableName, where, cb) => {
         return db.query(`select * from ${tableName} where ${where}`, [], function (results, fields) {
+            if (cb) {
+                cb(results)
+            }
+            return results
+        })
+    },
+    SEARCHLIMIT: (tableName, where, { page, size }, cb) => {
+        return db.query(`select ${where} from ${tableName} limit ${ (page-1) * size },${ size }`, [], function (results, fields) {
             if (cb) {
                 cb(results)
             }
