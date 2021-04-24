@@ -12,6 +12,7 @@ var router = express.Router()
 var { SQL_TABLE_NAME } = require('../lib/const')
 const { PARSER, UPDATE, SEARCHALL, ADD, DELETE } = require('../utils')
 const { PARSE_INTERFACE_LOG, TableInterfaceField } = require('../utils/interface.log')
+const UUID = require('uuid')
 
 // 各接口调用信息
 router.get('/getInterfaceDetail', function (req, res, next) {
@@ -24,7 +25,8 @@ router.get('/getInterfaceDetail', function (req, res, next) {
 router.post('/addInterfaceDetail', function (req, res, next) {
     const { belong, name } = PARSER(req.body)
     if (belong && name) {
-        ADD(SQL_TABLE_NAME.interface, "name, belong, request", `${name}, ${belong}, 0`, (results, fields) => {
+        const interface_id = UUID.v4()
+        ADD(SQL_TABLE_NAME.interface, "id, name, belong, request", `'${interface_id}', ${name}, ${belong}, 0`, (results, fields) => {
             res.json({ code: 200, result: { msg: 'success' } })
         })
     } else {
