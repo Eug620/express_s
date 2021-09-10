@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-04 18:44:46
- * @LastEditTime : 2021-04-23 14:26:57
+ * @LastEditTime : 2021-09-10 15:47:45
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/utils/index.js
@@ -30,29 +30,29 @@ module.exports = {
             return results
         })
     },
-    SEARCHLIMIT: (tableName, where, { page, size }, cb) => {
-        return db.query(`select ${where} from ${tableName} limit ${ (page-1) * size },${ size }`, [], function (results, fields) {
+    SEARCHLIMIT: (tableName, where, { page, size }, orderBy, cb) => {
+        return db.query(`select ${where} from ${tableName} order by ${orderBy} limit ${ (page-1) * size },${ size }`, [], function (results, fields) {
             if (cb) {
                 cb(results)
             }
             return results
         })
     },
-    SEARCHCOLUMNS: (tableName, where, cb) => {
-        return db.query(`select ${where} from ${tableName}`, [], function (results, fields) {
+    SEARCHCOLUMNS: (tableName, where, orderBy, cb) => {
+        return db.query(`select ${where} from ${tableName} order by ${orderBy}`, [], function (results, fields) {
             if (cb) {
                 cb(results)
             }
             return results
         })
     },
-    SEARCHALL: (tableName, cb) => {
+    SEARCHALL: (tableName, orderBy, cb) => {
         if (cb) {
-            db.query(`select * from ${tableName}`, [], function (results, fields) {
+            db.query(`select * from ${tableName} order by ${orderBy}`, [], function (results, fields) {
                 cb(results)
             })
         } else {
-            return db.query(`select * from ${tableName}`, [], function (results, fields) {
+            return db.query(`select * from ${tableName} order by ${orderBy}`, [], function (results, fields) {
                 return results
             })
         }

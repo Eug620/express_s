@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-28 15:04:34
- * @LastEditTime : 2021-02-19 18:29:48
+ * @LastEditTime : 2021-09-10 16:14:10
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteCity.js
@@ -14,7 +14,7 @@ const { SEARCH, SEARCHALL } = require('../utils')
 
 // 省级（省份、直辖市、自治区）列表
 router.get('/provinces', function (req, res, next) {
-    SEARCHALL(SQL_TABLE_NAME.city_provinces, (results) => {
+    SEARCHALL(SQL_TABLE_NAME.city_provinces, 'code ASC', (results) => {
         res.json({ code: 200, result: results })
     })
 })

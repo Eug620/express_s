@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-12-29 10:59:27
- * @LastEditTime : 2021-02-19 18:30:10
+ * @LastEditTime : 2021-09-10 15:48:25
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteImage.js
@@ -15,7 +15,7 @@ const UUID = require('uuid');
 const { PARSER, UPDATE, SEARCHALL, ADD, DELETE } = require('../utils')
 // 获取图标列表
 router.get('/getImageList', function (req, res, next) {
-    SEARCHALL(SQL_TABLE_NAME.image, (results) => {
+    SEARCHALL(SQL_TABLE_NAME.image, 'update_time DESC', (results) => {
         res.json({ code: 200, result: results })
     })
 })
@@ -60,7 +60,7 @@ router.post('/deleteImage', function (req, res, next) {
 
 // 获取随机图片
 router.get('/background', function (req, res, next) {
-    SEARCHALL(SQL_TABLE_NAME.image, (results) => {
+    SEARCHALL(SQL_TABLE_NAME.image,'update_time DESC', (results) => {
         const idx = _.random(0, results.length)
         res.json({ code: 200, result: results[idx] })
     })

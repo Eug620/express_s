@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:38:02
- * @LastEditTime : 2021-03-26 17:43:05
+ * @LastEditTime : 2021-09-10 16:17:59
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteUser.js
@@ -15,7 +15,7 @@ const { PARSER, UPDATE, SEARCH, SEARCHALL, DELETE, ADD } = require('../utils')
 
 // 用户列表
 router.get('/getUserList', function (req, res, next) {
-    SEARCHALL(SQL_TABLE_NAME.user, (results) => {
+    SEARCHALL(SQL_TABLE_NAME.user, 'update_time DESC', (results) => {
         res.json({ code: 200, result: results })
     })
 })

@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-19 11:32:06
- * @LastEditTime : 2021-02-19 18:38:34
+ * @LastEditTime : 2021-09-10 16:16:37
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteInterface.js
@@ -16,7 +16,7 @@ const UUID = require('uuid')
 
 // 各接口调用信息
 router.get('/getInterfaceDetail', function (req, res, next) {
-    SEARCHALL(SQL_TABLE_NAME.interface, (results) => {
+    SEARCHALL(SQL_TABLE_NAME.interface, 'id ASC', (results) => {
         res.json({ code: 200, result: results })
     })
 })
@@ -60,7 +60,7 @@ router.post('/deleteInterfaceDetail', function (req, res, next) {
 
 // 接口日志信息列表
 router.get('/getInterfaceLog', function (req, res, next) {
-    SEARCHALL(SQL_TABLE_NAME.interface_log, (results) => {
+    SEARCHALL(SQL_TABLE_NAME.interface_log, 'log_date ASC', (results) => {
         const DATA = PARSE_INTERFACE_LOG(results, TableInterfaceField)
         res.json({ code: 200, result: DATA })
     })

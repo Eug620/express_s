@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-04 18:02:39
- * @LastEditTime : 2021-02-19 18:24:09
+ * @LastEditTime : 2021-09-10 15:52:08
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/event/Interval/index.js
@@ -15,7 +15,7 @@ const { TableInterfaceField } = require('../../utils/interface.log')
 module.exports = (app) => {
   //每月1号开始记录上月信息秒定时执行一次:
   schedule.scheduleJob('1 0 0 1 * *',() => {
-    SEARCHALL(SQL_TABLE_NAME.interface, (results) => {
+    SEARCHALL(SQL_TABLE_NAME.interface, 'id DESC', (results) => {
         const LOGDATE = new Date(Date.parse(new Date()) - 3000).toLocaleDateString() + ""
         const DATASTR = []
         results.forEach(interface => {
