@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-19 11:32:06
- * @LastEditTime : 2021-09-10 16:16:37
+ * @LastEditTime : 2021-10-12 18:40:15
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteInterface.js
@@ -11,7 +11,6 @@ var express = require('express')
 var router = express.Router()
 var { SQL_TABLE_NAME } = require('../lib/const')
 const { PARSER, UPDATE, SEARCHALL, ADD, DELETE } = require('../utils')
-const { PARSE_INTERFACE_LOG, TableInterfaceField } = require('../utils/interface.log')
 const UUID = require('uuid')
 
 // 各接口调用信息
@@ -61,7 +60,14 @@ router.post('/deleteInterfaceDetail', function (req, res, next) {
 // 接口日志信息列表
 router.get('/getInterfaceLog', function (req, res, next) {
     SEARCHALL(SQL_TABLE_NAME.interface_log, 'log_date ASC', (results) => {
-        const DATA = PARSE_INTERFACE_LOG(results, TableInterfaceField)
+        const DATA = results.map(interfaceData => {
+            try {
+                interfaceData['log_data'] = JSON.parse(interfaceData['log_data'])
+                return interfaceData
+            } catch (error) {
+                return interfaceData
+            }
+        })
         res.json({ code: 200, result: DATA })
     })
 })
