@@ -1,4 +1,4 @@
-/* 
+/*
  * @Author       : Eug
  * @Date         : 2021-01-04 18:02:39
  * @LastEditTime : 2021-10-12 18:40:47
@@ -14,7 +14,8 @@ const UUID = require('uuid');
 
 module.exports = (app) => {
   //每月1号开始记录上月信息秒定时执行一次:
-  schedule.scheduleJob('1 0 0 1 * *',() => {
+  // schedule.scheduleJob('1 0 0 1 * *',() => {
+  schedule.scheduleJob('1 0 0 * * *',() => {
     SEARCHALL(SQL_TABLE_NAME.interface, 'id DESC', (results) => {
       try {
         const LOGDATE = new Date(Date.parse(new Date()) - 3000).toLocaleDateString() + ""
