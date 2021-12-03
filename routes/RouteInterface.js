@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-19 11:32:06
- * @LastEditTime : 2021-10-12 18:40:15
+ * @LastEditTime : 2021-12-03 14:58:41
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteInterface.js
@@ -37,8 +37,7 @@ router.post('/addInterfaceDetail', function (req, res, next) {
 router.post('/updateInterfaceDetail', function (req, res, next) {
     const { belong, name, id } = PARSER(req.body)
     if (belong && name && id) {
-        UPDATE(SQL_TABLE_NAME.interface, `belong = ${belong}`, "id = " + id)
-        UPDATE(SQL_TABLE_NAME.interface, `name = ${name}`, "id = " + id)
+        UPDATE(SQL_TABLE_NAME.interface, `belong = ${belong},name = ${name}`, "id = " + id)
         res.json({ code: 200, result: { msg: 'update InterfaceDetail success' } })
     } else {
         res.json({ code: 403, result: { msg: '参数缺失' } })

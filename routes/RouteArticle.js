@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-25 10:41:07
- * @LastEditTime : 2021-09-10 15:43:35
+ * @LastEditTime : 2021-12-03 14:33:41
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteArticle.js
@@ -22,7 +22,14 @@ router.get('/getArticleList', function (req, res, next) {
 // 文章列表index
 router.get('/getArticle', function (req, res, next) {
   const { size, page } = PARSER(req.query)
-  SEARCHLIMIT(SQL_TABLE_NAME.article,'article_id, article_title, article_describe, author, page_views, create_time', {size: size || 1, page: page || 10}, 'create_time DESC', (results) => {
+  SEARCHLIMIT(SQL_TABLE_NAME.article,'article_id, article_title, article_describe, author, page_views, create_time', {size: size || 10, page: page || 1}, 'create_time DESC', (results) => {
+    res.json({ code: 200, result: results })
+  })
+})
+
+// 热门列表
+router.get('/getHotArticle', function (req, res, next) {
+  SEARCHLIMIT(SQL_TABLE_NAME.article,'article_id, article_title, article_describe, author, page_views, create_time', {size: 10, page: 1}, 'page_views DESC', (results) => {
     res.json({ code: 200, result: results })
   })
 })

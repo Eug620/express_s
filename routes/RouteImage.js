@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-12-29 10:59:27
- * @LastEditTime : 2021-09-10 15:48:25
+ * @LastEditTime : 2021-12-03 14:58:27
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteImage.js
@@ -38,8 +38,7 @@ router.post('/updateImage', function (req, res, next) {
     const { image_url, image_id } = PARSER(req.body)
     const timer = Date.parse(new Date())
     if (image_url && image_id) {
-        UPDATE(SQL_TABLE_NAME.image, `image_url = ${image_url}`, "image_id = " + image_id)
-        UPDATE(SQL_TABLE_NAME.image, `update_time = ${timer}`, "image_id = " + image_id)
+        UPDATE(SQL_TABLE_NAME.image, `image_url = ${image_url}, update_time = ${timer}`, "image_id = " + image_id)
         res.json({ code: 200, result: { msg: 'update image success' } })
     } else {
         res.json({ code: 403, result: { msg: '参数缺失' } })

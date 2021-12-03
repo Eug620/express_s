@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:38:02
- * @LastEditTime : 2021-09-10 16:17:59
+ * @LastEditTime : 2021-12-03 14:57:35
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteUser.js
@@ -45,10 +45,11 @@ router.post('/updateUser', function (req, res, next) {
     const timer = Date.parse(new Date())
     const { user_name, user_password, user_email, user_id } = PARSER(req.body)
     if (user_name && user_password && user_id) {
-        UPDATE(SQL_TABLE_NAME.user, `user_name = ${user_name}`, "user_id = " + user_id)
-        UPDATE(SQL_TABLE_NAME.user, `user_password = ${user_password}`, "user_id = " + user_id)
-        UPDATE(SQL_TABLE_NAME.user, `user_email = ${user_email}`, "user_id = " + user_id)
-        UPDATE(SQL_TABLE_NAME.user, `update_time = ${timer}`, "user_id = " + user_id)
+        UPDATE(
+            SQL_TABLE_NAME.user,
+            `user_name = ${user_name},user_password = ${user_password},user_email = ${user_email},update_time = ${timer}`,
+            "user_id = " + user_id
+        )
         res.json({ code: 200, result: { msg: 'update user success' } })
     } else {
         res.json({ code: 403, result: { msg: '参数缺失' } })
