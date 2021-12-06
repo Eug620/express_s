@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-04 18:44:46
- * @LastEditTime : 2021-09-10 15:47:45
+ * @LastEditTime : 2021-12-06 15:56:48
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/utils/index.js
@@ -88,5 +88,13 @@ module.exports = {
         // decode buffer as UTF-8
         const str = buff.toString('utf-8')
         return str
+    },
+    LEFT_JOIN: (tableName, columns, left_join, orderBy, where, cb) => {
+        return db.query(`select ${columns} from ${tableName} ${left_join} ${where ? 'where  ' + where : ''} order by ${orderBy} `, [], function (results, fields) {
+            if (cb) {
+                cb(results)
+            }
+            return results
+        })
     }
 }
