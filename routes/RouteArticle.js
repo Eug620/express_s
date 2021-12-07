@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-25 10:41:07
- * @LastEditTime : 2021-12-03 14:33:41
+ * @LastEditTime : 2021-12-07 17:37:34
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteArticle.js
@@ -14,24 +14,41 @@ const { SEARCHCOLUMNS, PARSER, ADD, DELETE, SEARCH, UPDATE, BUFFER_BASE64, BUFFE
 
 // 文章列表All
 router.get('/getArticleList', function (req, res, next) {
-  SEARCHCOLUMNS(SQL_TABLE_NAME.article, 'article_id, article_title, article_describe, author, page_views, create_time', 'create_time DESC', (results) => {
-    res.json({ code: 200, result: results })
-  })
+  SEARCHCOLUMNS(
+    SQL_TABLE_NAME.article,
+    `article_id, article_title, article_describe, author, page_views, create_time, (SELECT COUNT(*) FROM ${SQL_TABLE_NAME.article_comment} WHERE article_id = ${SQL_TABLE_NAME.article}.article_id and pid = ${SQL_TABLE_NAME.article}.article_id ) as article_count`,
+    'create_time DESC',
+    (results) => {
+      res.json({ code: 200, result: results })
+    }
+  )
 })
 
 // 文章列表index
 router.get('/getArticle', function (req, res, next) {
   const { size, page } = PARSER(req.query)
-  SEARCHLIMIT(SQL_TABLE_NAME.article,'article_id, article_title, article_describe, author, page_views, create_time', {size: size || 10, page: page || 1}, 'create_time DESC', (results) => {
-    res.json({ code: 200, result: results })
-  })
+  SEARCHLIMIT(
+    SQL_TABLE_NAME.article,
+    `article_id, article_title, article_describe, author, page_views, create_time, (SELECT COUNT(*) FROM ${SQL_TABLE_NAME.article_comment} WHERE article_id = ${SQL_TABLE_NAME.article}.article_id and pid = ${SQL_TABLE_NAME.article}.article_id ) as article_count`,
+    {size: size || 10, page: page || 1},
+    'create_time DESC',
+    (results) => {
+      res.json({ code: 200, result: results })
+    }
+  )
 })
 
 // 热门列表
 router.get('/getHotArticle', function (req, res, next) {
-  SEARCHLIMIT(SQL_TABLE_NAME.article,'article_id, article_title, article_describe, author, page_views, create_time', {size: 10, page: 1}, 'page_views DESC', (results) => {
-    res.json({ code: 200, result: results })
-  })
+  SEARCHLIMIT(
+    SQL_TABLE_NAME.article,
+    `article_id, article_title, article_describe, author, page_views, create_time, (SELECT COUNT(*) FROM ${SQL_TABLE_NAME.article_comment} WHERE article_id = ${SQL_TABLE_NAME.article}.article_id and pid = ${SQL_TABLE_NAME.article}.article_id ) as article_count`,
+    {size: 10, page: 1},
+    'page_views DESC',
+    (results) => {
+      res.json({ code: 200, result: results })
+    }
+  )
 })
 
 // 新增文章
