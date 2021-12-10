@@ -90,7 +90,7 @@ module.exports = {
         return str
     },
     LEFT_JOIN: (tableName, columns, left_join, orderBy, where, cb) => {
-        return db.query(`select ${columns} from ${tableName} ${left_join} ${where ? 'where  ' + where : ''} order by ${orderBy} `, [], function (results, fields) {
+        return db.query(`select ${columns} from ${tableName} ${left_join} ${where ? 'where  ' + where : ''} ${ orderBy ? (' order by ' + orderBy) : '' }`, [], function (results, fields) {
             if (cb) {
                 cb(results)
             }
