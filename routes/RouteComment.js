@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-12-03 18:09:49
- * @LastEditTime : 2021-12-22 15:57:44
+ * @LastEditTime : 2021-12-27 18:04:06
  * @LastEditors  : Eug
  * @Descripttion : 评论相关接口
  * @FilePath     : /express_s/routes/RouteComment.js
@@ -67,7 +67,7 @@ router.get('/all', async (req, res, next) => {
         // 获取评论all
         SEARCH(
           SQL_TABLE_NAME.article_comment,
-          `article_id = '${article_id}'`,
+          `article_id = '${article_id}' order by create_time DESC`,
           (results) => {
             // 外层评论
             const OuterLayer = []
