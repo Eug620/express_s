@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-12-29 10:59:27
- * @LastEditTime : 2021-12-22 16:00:29
+ * @LastEditTime : 2021-12-27 17:30:56
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteImage.js
@@ -12,7 +12,7 @@ var _ = require('lodash')
 var router = express.Router()
 var { SQL_TABLE_NAME } = require('../lib/const')
 const UUID = require('uuid');
-const { PARSER, UPDATE, SEARCHALL, ADD, DELETE } = require('../utils')
+const { PARSER, UPDATE, SEARCHALL, ADD, DELETE, SEARCH } = require('../utils')
 // 获取图标列表
 router.get('/getImageList', function (req, res, next) {
     try {
@@ -20,7 +20,7 @@ router.get('/getImageList', function (req, res, next) {
             res.json({ code: 200, result: results })
         })
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -30,14 +30,20 @@ router.post('/addImage', function (req, res, next) {
         const { image_url } = PARSER(req.body)
         const timer = Date.parse(new Date())
         if (image_url) {
-            ADD(SQL_TABLE_NAME.image, "image_id, image_url, create_time, update_time", `'${UUID.v4()}', ${image_url}, ${timer}, ${timer}`, (results, fields) => {
-                res.json({ code: 200, result: { msg: 'success' } })
+            SEARCH(SQL_TABLE_NAME.image, `image_url = ${image_url}`, (detail) => {
+                if (detail.length) {
+                    res.json({ code: 403, result: { msg: '已录入,请勿重复录入!' } })
+                } else {
+                    ADD(SQL_TABLE_NAME.image, "image_id, image_url, create_time, update_time", `'${UUID.v4()}', ${image_url}, ${timer}, ${timer}`, (results, fields) => {
+                        res.json({ code: 200, result: { msg: '录入成功!' } })
+                    })
+                }
             })
         } else {
-            res.json({ code: 403, result: { msg: 'image_url is require!' } })
+            res.json({ code: 403, result: { msg: '参数缺失!' } })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -48,12 +54,12 @@ router.post('/updateImage', function (req, res, next) {
         const timer = Date.parse(new Date())
         if (image_url && image_id) {
             UPDATE(SQL_TABLE_NAME.image, `image_url = ${image_url}, update_time = ${timer}`, "image_id = " + image_id)
-            res.json({ code: 200, result: { msg: 'update image success' } })
+            res.json({ code: 200, result: { msg: '更新成功!' } })
         } else {
-            res.json({ code: 403, result: { msg: '参数缺失' } })
+            res.json({ code: 403, result: { msg: '参数缺失!' } })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -63,13 +69,13 @@ router.post('/deleteImage', function (req, res, next) {
         const { image_id } = PARSER(req.body)
         if (image_id) {
             DELETE(SQL_TABLE_NAME.image, "image_id = " + image_id, (results, fields) => {
-                res.json({ code: 200, result: { msg: 'delete image success' } })
+                res.json({ code: 200, result: { msg: '删除成功!' } })
             })
         } else {
-            res.json({ code: 403, result: { msg: '参数缺失' } })
+            res.json({ code: 403, result: { msg: '参数缺失!' } })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -81,7 +87,7 @@ router.get('/background', function (req, res, next) {
             res.json({ code: 200, result: results[idx] })
         })
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 

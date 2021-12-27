@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:38:02
- * @LastEditTime : 2021-12-22 16:01:59
+ * @LastEditTime : 2021-12-27 17:35:12
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteUser.js
@@ -20,7 +20,7 @@ router.get('/getUserList', function (req, res, next) {
             res.json({ code: 200, result: results })
         })
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -38,13 +38,13 @@ router.post('/createUser', function (req, res, next) {
                     res.json({ code: 403, result: { msg: '该用户名已被使用!' } })
                 } else {
                     ADD(SQL_TABLE_NAME.user, "user_id, user_name, user_password, user_email, create_time, update_time", `'${UUID.v4()}', '${user_name}', '${user_password}', '${user_email}', ${timer}, ${timer}`, (results, fields) => {
-                        res.json({ code: 200, result: { msg: 'create user success' } })
+                        res.json({ code: 200, result: { msg: '新增用户成功!' } })
                     })
                 }
             })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -59,12 +59,12 @@ router.post('/updateUser', function (req, res, next) {
                 `user_name = ${user_name},user_password = ${user_password},user_email = ${user_email},update_time = ${timer}`,
                 "user_id = " + user_id
             )
-            res.json({ code: 200, result: { msg: 'update user success' } })
+            res.json({ code: 200, result: { msg: '更新用户成功!' } })
         } else {
-            res.json({ code: 403, result: { msg: '参数缺失' } })
+            res.json({ code: 403, result: { msg: '参数缺失!' } })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -74,13 +74,13 @@ router.post('/deleteUser', function (req, res, next) {
         const { user_id } = PARSER(req.body)
         if (user_id) {
             DELETE(SQL_TABLE_NAME.user, "user_id = " + user_id, (results) => {
-                res.json({ code: 200, result: { msg: 'delete user success' } })
+                res.json({ code: 200, result: { msg: '删除用户成功!' } })
             })
         } else {
-            res.json({ code: 403, result: { msg: '参数缺失' } })
+            res.json({ code: 403, result: { msg: '参数缺失!' } })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -97,7 +97,7 @@ router.post('/login', function (req, res, next) {
             }
         })
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 

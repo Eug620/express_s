@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-03-25 10:41:07
- * @LastEditTime : 2021-12-22 16:11:09
+ * @LastEditTime : 2021-12-27 17:32:27
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteArticle.js
@@ -24,7 +24,7 @@ router.get('/getArticleList', function (req, res, next) {
       }
     )
   } catch (error) {
-    res.json({ code: 500, msg: error })
+    res.json({ code: 500, msg: `${error}` })
   }
 })
 
@@ -42,7 +42,7 @@ router.get('/getArticle', function (req, res, next) {
       }
     )
   } catch (error) {
-    res.json({ code: 500, msg: error })
+    res.json({ code: 500, msg: `${error}` })
   }
 })
 
@@ -59,7 +59,7 @@ router.get('/getHotArticle', function (req, res, next) {
       }
     )
   } catch (error) {
-    res.json({ code: 500, msg: error })
+    res.json({ code: 500, msg: `${error}` })
   }
 })
 
@@ -77,13 +77,13 @@ router.post('/createArticle', function (req, res, next) {
           res.json({ code: 403, result: { msg: '该用户不存在!' } })
         } else {
           ADD(SQL_TABLE_NAME.article, "article_id, article_title, article_describe, article_content, author, page_views, create_time", `'${article_id}', '${article_title}', '${article_describe}', '${BUFFER_BASE64(article_content)}', '${user_id}', ${0}, ${timer}`, (results, fields) => {
-            res.json({ code: 200, result: { msg: 'create article success' } })
+            res.json({ code: 200, result: { msg: '新增文章成功!' } })
           })
         }
       })
     }
   } catch (error) {
-    res.json({ code: 500, msg: error })
+    res.json({ code: 500, msg: `${error}` })
   }
 })
 
@@ -93,13 +93,13 @@ router.post('/deleteArticle', function (req, res, next) {
     const { article_id } = PARSER(req.body)
     if (article_id) {
       DELETE(SQL_TABLE_NAME.article, "article_id = " + article_id, (results) => {
-        res.json({ code: 200, result: { msg: 'delete article success' } })
+        res.json({ code: 200, result: { msg: '删除文章成功!' } })
       })
     } else {
-      res.json({ code: 403, result: { msg: '参数缺失' } })
+      res.json({ code: 403, result: { msg: '参数缺失!' } })
     }
   } catch (error) {
-    res.json({ code: 500, msg: error })
+    res.json({ code: 500, msg: `${error}` })
   }
 })
 
@@ -131,7 +131,7 @@ router.post('/detailArticle', function (req, res, next) {
       res.json({ code: 403, result: { msg: '参数缺失' } })
     }
   } catch (error) {
-    res.json({ code: 500, msg: error })
+    res.json({ code: 500, msg: `${error}` })
   }
 })
 

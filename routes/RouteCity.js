@@ -19,7 +19,7 @@ router.get('/provinces', function (req, res, next) {
             res.json({ code: 200, result: results })
         })
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -35,7 +35,7 @@ router.get('/cities', function (req, res, next) {
             })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -51,7 +51,7 @@ router.get('/areas', function (req, res, next) {
             })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -67,7 +67,7 @@ router.get('/streets', function (req, res, next) {
             })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -83,7 +83,7 @@ router.get('/villages', function (req, res, next) {
             })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 

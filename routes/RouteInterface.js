@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-19 11:32:06
- * @LastEditTime : 2021-12-22 16:01:45
+ * @LastEditTime : 2021-12-27 17:34:12
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteInterface.js
@@ -20,7 +20,7 @@ router.get('/getInterfaceDetail', function (req, res, next) {
             res.json({ code: 200, result: results })
         })
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -31,13 +31,13 @@ router.post('/addInterfaceDetail', function (req, res, next) {
         if (belong && name) {
             const interface_id = UUID.v4()
             ADD(SQL_TABLE_NAME.interface, "id, name, belong, request", `'${interface_id}', ${name}, ${belong}, 0`, (results, fields) => {
-                res.json({ code: 200, result: { msg: 'success' } })
+                res.json({ code: 200, result: { msg: '新增成功!' } })
             })
         } else {
-            res.json({ code: 403, result: { msg: 'password and userName is require!' } })
+            res.json({ code: 403, result: { msg: '参数缺失!' } })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -47,12 +47,12 @@ router.post('/updateInterfaceDetail', function (req, res, next) {
         const { belong, name, id } = PARSER(req.body)
         if (belong && name && id) {
             UPDATE(SQL_TABLE_NAME.interface, `belong = ${belong},name = ${name}`, "id = " + id)
-            res.json({ code: 200, result: { msg: 'update InterfaceDetail success' } })
+            res.json({ code: 200, result: { msg: '更新成功!' } })
         } else {
-            res.json({ code: 403, result: { msg: '参数缺失' } })
+            res.json({ code: 403, result: { msg: '参数缺失!' } })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -62,13 +62,13 @@ router.post('/deleteInterfaceDetail', function (req, res, next) {
         const { id } = PARSER(req.body)
         if (id) {
             DELETE(SQL_TABLE_NAME.interface, "id = " + id, (results, fields) => {
-                res.json({ code: 200, result: { msg: 'delete InterfaceDetail success' } })
+                res.json({ code: 200, result: { msg: '删除成功!' } })
             })
         } else {
-            res.json({ code: 403, result: { msg: '参数缺失' } })
+            res.json({ code: 403, result: { msg: '参数缺失!' } })
         }
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 
@@ -87,7 +87,7 @@ router.get('/getInterfaceLog', function (req, res, next) {
             res.json({ code: 200, result: DATA })
         })
     } catch (error) {
-        res.json({ code: 500, msg: error })
+        res.json({ code: 500, msg: `${error}` })
     }
 })
 

@@ -46,7 +46,7 @@ router.post('/create', function (req, res, next) {
       })
     }
   } catch (error) {
-    res.json({ code: 500, msg: error })
+    res.json({ code: 500, msg: `${error}` })
   }
 })
 
