@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-19 11:32:06
- * @LastEditTime : 2021-12-27 17:34:12
+ * @LastEditTime : 2021-12-27 19:47:52
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteInterface.js
@@ -75,7 +75,11 @@ router.post('/deleteInterfaceDetail', function (req, res, next) {
 // 接口日志信息列表
 router.get('/getInterfaceLog', function (req, res, next) {
     try {
-        SEARCHALL(SQL_TABLE_NAME.interface_log, 'log_date ASC', (results) => {
+        const { valid_from, valid_to } = PARSER(req.query)
+        SEARCHALL(
+            SQL_TABLE_NAME.interface_log + (valid_from && valid_to ? ` WHERE log_date <= ${valid_to} AND log_date >= ${valid_from}` : ''), 
+            'log_date ASC', 
+            (results) => {
             const DATA = results.map(interfaceData => {
                 try {
                     interfaceData['log_data'] = JSON.parse(interfaceData['log_data'])
