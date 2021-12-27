@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-19 11:32:06
- * @LastEditTime : 2021-12-27 19:47:52
+ * @LastEditTime : 2021-12-27 20:05:32
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteInterface.js
@@ -77,7 +77,7 @@ router.get('/getInterfaceLog', function (req, res, next) {
     try {
         const { valid_from, valid_to } = PARSER(req.query)
         SEARCHALL(
-            SQL_TABLE_NAME.interface_log + (valid_from && valid_to ? ` WHERE log_date <= ${valid_to} AND log_date >= ${valid_from}` : ''), 
+            SQL_TABLE_NAME.interface_log + (valid_from && valid_to ? ` WHERE log_date <= '${valid_to}' AND log_date >= '${valid_from}'` : ''), 
             'log_date ASC', 
             (results) => {
             const DATA = results.map(interfaceData => {
