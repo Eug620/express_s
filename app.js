@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:37:56
- * @LastEditTime : 2022-01-04 18:07:33
+ * @LastEditTime : 2022-01-04 18:38:11
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/app.js
@@ -65,7 +65,7 @@ app.use((req, res, next) => {
   const authorization = req.headers['authorization'];
 
   if (authorization === "undefined") {
-    return res.status(401).send({
+    return res.json({
       code: 401,
       msg: '暂无权限'
     })
@@ -75,7 +75,7 @@ app.use((req, res, next) => {
         req.data = data;
         return next();
     }).catch((error) => {
-        return res.status(401).send({
+        return res.json({
           code: 401,
           msg: '暂无权限'
         });
