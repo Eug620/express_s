@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:38:02
- * @LastEditTime : 2021-12-27 17:35:12
+ * @LastEditTime : 2022-01-04 17:43:30
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteUser.js
@@ -10,6 +10,7 @@
 var express = require('express')
 var router = express.Router()
 var { SQL_TABLE_NAME } = require('../lib/const')
+var token = require('../utils/token')
 const UUID = require('uuid')
 const { PARSER, UPDATE, SEARCH, SEARCHALL, DELETE, ADD } = require('../utils')
 
@@ -92,8 +93,14 @@ router.post('/login', function (req, res, next) {
             if (!detail.length) {
                 res.json({ code: 403, result: { msg: '该用户不存在!' } })
             } else {
-                detail.forEach(item => Reflect.deleteProperty(item, 'user_password'))
-                res.json({ code: 200, result: { msg: '欢迎登录', data: detail[0] } })
+                token.setToken(user_name).then(token => {
+                    detail.forEach(item => Reflect.deleteProperty(item, 'user_password'))
+                    res.status(200).send({
+                        code: 200,
+                        result: { msg: '欢迎登录', data: detail[0] },
+                        token: token
+                    })
+                })
             }
         })
     } catch (error) {

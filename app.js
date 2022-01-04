@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:37:56
- * @LastEditTime : 2021-03-23 19:44:19
+ * @LastEditTime : 2022-01-04 18:07:33
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/app.js
@@ -13,11 +13,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // const cors = require('cors');
+var auth = require('./lib/auth')
 
 var indexRouter = require('./routes/index');
 var bodyParser = require('body-parser');
 var Event = require('./event');
 var Libs = require('./utils/libs');
+var token = require("./utils/token")
 var app = express();
 
 // app.use(cors());
@@ -49,6 +51,37 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req, res, next) => {
+    
+  const URL = req.url
+
+  if (!auth.interface_list.includes(URL)) {
+    // 登录接口无需校验
+    return next()
+  }
+  
+  // 获取token值
+  const authorization = req.headers['authorization'];
+
+  if (authorization === "undefined") {
+    return res.status(401).send({
+      code: 401,
+      msg: '暂无权限'
+    })
+  } else {
+    // 验证token
+    token.verToken(authorization).then((data) => {
+        req.data = data;
+        return next();
+    }).catch((error) => {
+        return res.status(401).send({
+          code: 401,
+          msg: '暂无权限'
+        });
+    })
+  }
+})
 
 app.use(bodyParser.json({ limit: '1mb' }));  //body-parser 解析json格式数据
 app.use(bodyParser.urlencoded({            //此项必须在 bodyParser.json 下面,为参数编码
