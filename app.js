@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:37:56
- * @LastEditTime : 2022-01-05 12:10:42
+ * @LastEditTime : 2022-01-05 12:18:34
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/app.js
@@ -24,7 +24,7 @@ var app = express();
 app.use(cors());
 app.all('*', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Headers', "*");
+  res.header('Access-Control-Allow-Headers', req.environ['HTTP_ORIGIN']);
   res.header("Access-Control-Allow-Methods", "*");
   res.header("Access-Control-Allow-Credentials", true);
   next();
