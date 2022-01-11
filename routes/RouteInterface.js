@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2021-01-19 11:32:06
- * @LastEditTime : 2021-12-27 20:05:32
+ * @LastEditTime : 2022-01-11 19:33:08
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteInterface.js
@@ -10,6 +10,7 @@
 var express = require('express')
 var router = express.Router()
 var { SQL_TABLE_NAME } = require('../lib/const')
+var upload = require('../lib/upload')
 const { PARSER, UPDATE, SEARCHALL, ADD, DELETE } = require('../utils')
 const UUID = require('uuid')
 
@@ -95,5 +96,8 @@ router.get('/getInterfaceLog', function (req, res, next) {
     }
 })
 
+router.post('/upload', upload.single('data'),(req, res, next) => {
+    res.json({ code: 200, msg: '上传成功'})
+})
 
 module.exports = router

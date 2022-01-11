@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:37:56
- * @LastEditTime : 2022-01-05 12:21:34
+ * @LastEditTime : 2022-01-11 19:33:17
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/app.js
@@ -20,7 +20,7 @@ var indexRouter = require('./routes/index');
 var Event = require('./event');
 var Libs = require('./utils/libs');
 var app = express();
-
+var upload = require('./lib/upload')
 // app.use(cors());
 // app.all('*', function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
@@ -57,6 +57,7 @@ token(app)
 loger(app)
 // 抽取路由
 indexRouter(app)
+app.use(upload.any())
 Event(app)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

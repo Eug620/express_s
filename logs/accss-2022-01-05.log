@@ -1,5 +1,0 @@
-::1 - - [05/Jan/2022:04:00:53 +0000] "GET /image/getImageList HTTP/1.1" 200 29829 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62"
-::1 - - [05/Jan/2022:04:01:20 +0000] "GET /user/getUserList HTTP/1.1" 200 381 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62"
-::1 - - [05/Jan/2022:04:06:29 +0000] "GET /user/getUserList HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62"
-::1 - - [05/Jan/2022:04:06:29 +0000] "GET /favicon.ico HTTP/1.1" 404 862 "http://localhost:3000/user/getUserList" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62"
-::1 - - [05/Jan/2022:04:11:22 +0000] "GET /user/getUserList HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62"
