@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-19 10:45:35
- * @LastEditTime : 2021-12-03 19:35:35
+ * @LastEditTime : 2022-01-14 17:13:43
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/index.js
@@ -13,6 +13,7 @@ var RouteImage = require('./RouteImage');
 var RouteCity = require('./RouteCity');
 var RouteArticle = require('./RouteArticle');
 var RouteComment = require('./RouteComment');
+var RouteInformation = require('./RouteInformation');
 
 module.exports = (app) => {
   app.use('/', RouteInterface)
@@ -21,4 +22,5 @@ module.exports = (app) => {
   app.use('/city', RouteCity)
   app.use('/article', RouteArticle)
   app.use('/comment', RouteComment)
+  app.use('/information', RouteInformation)
 };
