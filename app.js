@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2020-11-23 15:37:56
- * @LastEditTime : 2022-01-11 19:33:17
+ * @LastEditTime : 2022-01-14 14:14:55
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/app.js
@@ -21,6 +21,7 @@ var Event = require('./event');
 var Libs = require('./utils/libs');
 var app = express();
 var upload = require('./lib/upload')
+var socket = require('./utils/socket')
 // app.use(cors());
 // app.all('*', function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
@@ -59,6 +60,7 @@ loger(app)
 indexRouter(app)
 app.use(upload.any())
 Event(app)
+socket(app)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
