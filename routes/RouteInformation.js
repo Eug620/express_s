@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2022-01-14 17:11:25
- * @LastEditTime : 2022-01-14 17:37:42
+ * @LastEditTime : 2022-01-14 17:48:08
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteInformation.js
@@ -23,7 +23,7 @@ router.get('/all', function (req, res, next) {
         const userMap = Object.fromEntries(
           user_list.map(({user_id, user_name}) => [user_id, user_name])
         )
-        SEARCHALL(SQL_TABLE_NAME.information_record, 'create_time DESC', (results) => {
+        SEARCHALL(SQL_TABLE_NAME.information_record, 'create_time ASC', (results) => {
           const result = results.map(item => {
             item['message'] = BUFFER_UTF8(item['message'])
             item['user_name'] = userMap[item['user_id']]
