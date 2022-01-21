@@ -1,7 +1,7 @@
 /* 
  * @Author       : Eug
  * @Date         : 2022-01-21 15:43:22
- * @LastEditTime : 2022-01-21 16:05:29
+ * @LastEditTime : 2022-01-21 17:01:45
  * @LastEditors  : Eug
  * @Descripttion : Descripttion
  * @FilePath     : /express_s/routes/RouteLogs.js
@@ -28,7 +28,7 @@ router.get('/detail', function (req, res, next) {
   try {
     const { name } = PARSER(req.query)
     const detailStr = fs.readFileSync(`${logsPath}/${name}`,{encoding:'utf-8'})
-    const detailList = detailStr.split('::1 - - ')
+    const detailList = detailStr.split('\n')
     res.json({ code: 200, result: detailList.filter(v=>v) })
   } catch (error) {
     res.json({ code: 500, msg: `${error}` })
